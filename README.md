@@ -4,9 +4,30 @@ Este é um fork de https://github.com/support-khomp/chirpstack-docker.
 
 Adaptações/Alterações:
 - Substituição do Mosquitto (MQTT) pelo RabbitMQ (com usuário e senha)
-- Ativada integração AMQP para comunicação com RabbitMQ
+- Ativada integração AMQP para comunicação com RabbitMQ via filas
+  (Para consumir deve criar um binding no exchange "amq.topic" veja abaixo)
+- Atualizado com a versão mais recente do projeto original (Porém mantido apenas a região au915_0 e removido bacicstation) (https://github.com/chirpstack/chirpstack-docker/)
+- Utilizando .env para configurar usuário e senhas
 
-Segue o README do projeto original, sem alterações:
+**Importante**: antes de executar o projeto, crie um arquivo `.env`, copiando o conteúdo do arquivo `.env.example` e alterando as variáveis conforme necessário.
+
+## Consumindo mensagens do RabbitMQ
+
+Após configurar gateways, tiver uma aplicação e dispositivos conectados no ChirpStack (Ver https://docs.khomp.com/wikidocs/images/7/74/Tutorial_Chirpstack_ITG_-_PT_v5.pdf), as mensagens enviadas pelos dispositivos (já decodificadas pelo codec caso tenha) serão publicadas no exchange "amq.topic" com routing key no formato:
+
+```
+application.{{application_id}}.device.{{dev_eui}}.event.{{event}}
+```
+
+Portanto se você quer receber todas as mensagens de uma applicação, deve criar um binding no exchange "amq.topic" com a routing key (Application ID pode ser visto na interface web do ChirpStack):
+
+```
+application.{{application_id}}.#
+```
+> Via interface do RabbitMQ, após já ter criado um queue, Vá Exchanges -> amq.topic -> Bindings -> Add binding.
+
+
+Segue o README do projeto original:
 # ChirpStack Docker example
 
 This repository contains a skeleton to setup the [ChirpStack](https://www.chirpstack.io)
