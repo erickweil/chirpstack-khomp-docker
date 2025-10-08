@@ -8,7 +8,7 @@ services:
       - ./lorawan-devices:/opt/lorawan-devices
     depends_on:
       - postgres
-      # - mosquitto
+      - rabbitmq
       - redis
     environment:
       - MQTT_BROKER_HOST=rabbitmq
@@ -30,11 +30,8 @@ services:
     # https://www.chirpstack.io/docs/chirpstack-gateway-bridge/configuration.html#environment-variables
       - INTEGRATION__MQTT__AUTH__GENERIC__USERNAME=${MQTT_BROKER_USER}
       - INTEGRATION__MQTT__AUTH__GENERIC__PASSWORD=${MQTT_BROKER_PASSWORD}
-      - INTEGRATION__MQTT__EVENT_TOPIC_TEMPLATE=eu868/gateway/{{ .GatewayID }}/event/{{ .EventType }}
-      - INTEGRATION__MQTT__STATE_TOPIC_TEMPLATE=eu868/gateway/{{ .GatewayID }}/state/{{ .StateType }}
-      - INTEGRATION__MQTT__COMMAND_TOPIC_TEMPLATE=eu868/gateway/{{ .GatewayID }}/command/#
-    # depends_on:
-    #  - mosquitto
+    depends_on:
+     - rabbitmq
 
   # chirpstack-gateway-bridge-basicstation:
   #   image: chirpstack/chirpstack-gateway-bridge:4
