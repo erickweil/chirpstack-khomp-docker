@@ -2,9 +2,9 @@
 # configuration example and documentation.
 
 [integration.mqtt.auth.generic]
-servers=["tcp://mosquitto:1883"]
-username=""
-password=""
+servers=["tcp://rabbitmq:1883"]
+username="guest"
+password="guest"
 
 [integration.mqtt]
 event_topic_template="au915_0/gateway/{{ .GatewayID }}/event/{{ .EventType }}"
