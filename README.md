@@ -1,3 +1,12 @@
+# ChirpStack + Khomp - Adaptado para utilizar RabbitMQ ao invés de Mosquitto
+
+Este é um fork de https://github.com/support-khomp/chirpstack-docker.
+
+Adaptações/Alterações:
+- Substituição do Mosquitto (MQTT) pelo RabbitMQ (com usuário e senha)
+- Ativada integração AMQP para comunicação com RabbitMQ
+
+Segue o README do projeto original, sem alterações:
 # ChirpStack Docker example
 
 This repository contains a skeleton to setup the [ChirpStack](https://www.chirpstack.io)
