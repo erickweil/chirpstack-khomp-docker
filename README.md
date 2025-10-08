@@ -30,6 +30,11 @@ This setup is pre-configured for **AU915** region.
 This setup comes with a ChirpStack Gateway Bridge instance which is configured to the
 au915 topic prefix. You can connect your **ITG 200** UDP packet-forwarder based gateway to **port 1700**.
 
+* You must prefix the MQTT topic with the region.
+  Please see the region configuration files in the `configuration/chirpstack` for a list
+  of topic prefixes (e.g. eu868, us915_0, au915_0, as923_2, ...).
+* The protobuf marshaler is configured.
+
 # Data persistence
 
 PostgreSQL and Redis data is persisted in Docker volumes, see the `docker-compose.yml`
@@ -40,17 +45,26 @@ PostgreSQL and Redis data is persisted in Docker volumes, see the `docker-compos
 Before using this `docker-compose.yml` file, make sure you have [Docker](https://www.docker.com/community-edition)
 installed.
 
+
 ## Importing Khomp LoRaWAN Device repository
 
 To import the [khomp-lorawan-devices](https://github.com/support-khomp/khomp-lorawan-devices)
+
+## Importing device repository
+
+To import the [lorawan-devices](https://github.com/TheThingsNetwork/lorawan-devices)
+
 repository (optional step), run the following command:
 
 ```bash
-make import
+make import-khomp
 ```
 
 This will clone the `khomp-lorawan-devices` repository. Please note that for this step, you need to have the `git` and `make`
 commands installed.
+
+**Note:** an older snapshot of the `lorawan-devices` repository is cloned as the
+latest revision no longer contains a `LICENSE` file.
 
 ## Usage
 

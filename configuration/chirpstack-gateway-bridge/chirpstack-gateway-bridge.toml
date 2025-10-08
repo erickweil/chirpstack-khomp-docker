@@ -3,10 +3,10 @@
 
 [integration.mqtt.auth.generic]
 servers=["tcp://rabbitmq:1883"]
-username="guest"
-password="guest"
+# username="guest"
+# password="guest"
 
-[integration.mqtt]
-event_topic_template="au915_0/gateway/{{ .GatewayID }}/event/{{ .EventType }}"
-state_topic_template="au915_0/gateway/{{ .GatewayID }}/state/{{ .StateType }}"
-command_topic_template="au915_0/gateway/{{ .GatewayID }}/command/#"
+# [integration.mqtt]
+# event_topic_template="au915_0/gateway/{{ .GatewayID }}/event/{{ .EventType }}"
+# state_topic_template="au915_0/gateway/{{ .GatewayID }}/state/{{ .StateType }}"
+# command_topic_template="au915_0/gateway/{{ .GatewayID }}/command/#"

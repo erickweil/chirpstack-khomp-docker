@@ -5,3 +5,7 @@
 # data folder
 /data
 /lorawan-devices
+
+*-secret.conf
+
+*.env
