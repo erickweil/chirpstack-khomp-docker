@@ -203,7 +203,11 @@
     # Please consult the LoRaWAN Regional Parameters and local regulations
     # for valid and legal options. Note that the configured TX Power must be
     # supported by your gateway(s).
-    downlink_tx_power=-1
+    # downlink_tx_power=-1
+    # 
+    # Alterado, pois no padrão acima enviou com valor 30, 
+    # No gateway radioenge só poderia ser no máximo 27 (global_config.json --> tx_lut_X --> rf_power), causando erro TX_POWER
+    downlink_tx_power=23
 
     # ADR is disabled.
     adr_disabled=false
